@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<views>50</views>
+	<menucontrol>9000</menucontrol>
+	<controls>
+		<include>DefaultBackground</include>
+		<control type="group">
+			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
+			<control type="group">
+				<description>Guide Timeline</description>
+				<visible>Control.IsVisible(50)</visible>
+				<include>OpenClose_Right</include>
+				<include>Visible_Right</include>
+				<control type="group">
+					<top>410</top>
+					<depth>DepthContentPanel</depth>
+					<control type="image">
+						<left>0</left>
+						<top>-10</top>
+						<width>100%</width>
+						<bottom>66</bottom>
+						<texture colordiffuse="E6FFFFFF">dialogs/dialog-bg-nobo.png</texture>
+						<visible>Skin.HasSetting(ShowPVRGroups)</visible>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>-70</top>
+						<width>100%</width>
+						<bottom>66</bottom>
+						<texture colordiffuse="E6FFFFFF">dialogs/dialog-bg-nobo.png</texture>
+						<visible>!Skin.HasSetting(ShowPVRGroups)</visible>
+					</control>
+					<control type="group">
+						<visible>Control.IsVisible(50)</visible>
+						
+						<control type="image">
+							<left>10</left>
+							<top>-50</top>
+							<width>20</width>
+							<height>30</height>
+							<texture>icons/keyboard/arrowleft.png</texture>
+							<visible>!Skin.HasSetting(ShowPVRGroups)</visible>
+						</control>
+						<control type="image">
+							<right>10</right>
+							<top>-50</top>
+							<width>20</width>
+							<height>30</height>
+							<texture>icons/keyboard/arrowright.png</texture>
+							<visible>!Skin.HasSetting(ShowPVRGroups)</visible>
+						</control>
+					</control>
+					<control type="list" id="11">
+						<top>-75</top>
+						<left>40</left>
+						<right>40</right>
+						<onleft>PreviousChannelGroup</onleft>
+						<onright>NextChannelGroup</onright>
+						<onup condition="Control.IsVisible(50)">60560</onup>
+						<ondown>63</ondown>
+						<orientation>horizontal</orientation>
+						<scrolltime>200</scrolltime>
+						<visible>Control.IsVisible(50)</visible>
+						<visible>!Skin.HasSetting(ShowPVRGroups)</visible>
+						<itemlayout height="85" width="306">
+							<control type="image">
+								<left>1</left>
+								<top>0</top>
+								<width>306</width>
+								<height>80</height>
+								<texture colordiffuse="epg_button_nofocus" border="20">epgtopbutton/button-nofo.png</texture>
+							</control>
+							<control type="label">
+								<top>17</top>
+								<left></left>
+								<width>300</width>
+								<height>42</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]</label>
+								<textcolor>lightgrey</textcolor>
+							</control>
+						</itemlayout>
+						<focusedlayout height="85" width="306">
+							<control type="image">
+								<left>1</left>
+								<top>0</top>
+								<width>306</width>
+								<height>80</height>
+								<texture colordiffuse="epg_button_focus" border="20">epgtopbutton/button-fo.png</texture>
+								
+								
+							</control>
+							<control type="label">
+								<top>17</top>
+								<left></left>
+								<width>300</width>
+								<height>42</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<scroll>true</scroll>
+								<label>$INFO[ListItem.Label]</label>
+							</control>
+						</focusedlayout>
+					</control>
+					<control type="group" id="63">
+						<include content="EpgGrid">
+							<param name="control_id" value="50"/>
+							<param name="control_orientation" value="vertical"/>
+							<param name="control_top" value="55"/>
+							<param name="control_onup_id" value="11"/>
+							<param name="viewtype_label" value="Horizontal Guide"/>
+							<param name="progress_texture_border" value="0,60,18,14"/>
+							<param name="progress_texture" value="windows/pvr/epg_progress_vertical.png"/>
+							<param name="has_rulerdate_layout" value="false"/>
+							<param name="ruler_width" value="1400"/>
+							<param name="ruler_label_width" value="365"/>
+							<param name="channel_width" value="350" condition="!Skin.HasSetting(hide_channelnumber)"/>
+							<param name="extended_channel_width" value="375" condition="Skin.HasSetting(hide_channelnumber)"/>
+							<param name="scrollbar_top" value="47"/>
+						</include>
+					</control>
+				</control>
+				<control type="group">
+					<top>75</top>
+					<height>300</height>
+					
+					<control type="image" id="9885">
+						<top>-15</top>
+						<left>70</left>
+						<width>170</width>
+						<height>245</height>
+						<texture>$VAR[NowPVRPoster_Backend_Var]</texture>
+					</control>
+					<control type="image" id="9886"> 
+						<top>-15</top>
+						<left>70</left>
+						<width>170</width>
+						<height>245</height>
+						<texture fallback="DefaultPVRPoster.png">$VAR[NowPVRPoster_SkinHelper_Var]</texture>
+						<visible>String.IsEmpty(Control.GetLabel(9885))</visible>
+					</control> 
+					<control type="image"> 
+						<top>-15</top>
+						<left>70</left>
+						<width>170</width>
+						<height>245</height>
+						<texture>$VAR[NowPVRPoster_Local_Artwork_Var]</texture>
+					</control> 
+					<control type="image">
+						<top>0</top>
+						<left>270</left>
+						<width>95</width>
+						<height>100</height>
+						<aspectratio align="left">keep</aspectratio>
+						<texture fallback="DefaultTVShows.png">$INFO[container(50).ListItem.Icon]</texture>
+						<fadetime>200</fadetime>
+					</control>
+					<control type="label">
+						<top>1</top>
+						<left>380</left>
+						<right>60</right>
+						<height>30</height>
+						<textcolor>button_focus</textcolor>
+						<label>[B][COLOR white]$INFO[ListItem.EpgEventTitle]  •  [/COLOR][/B]$INFO[ListItem.StartTime,, - ]$INFO[ListItem.EndTime,,]</label>
+					</control>
+					<control type="image"> 
+						<left>610</left>
+						<top>54</top>
+						<width>40</width>
+						<height>30</height>
+						<texture fallback="flags/videoresolution/sd.png">$VAR[PVR_HDTV_Var,flags/hdtv/,.png]</texture>
+						<visible>true</visible>
+					</control>
+					
+					<control type="label">
+						<top>46</top>
+						<left>680</left>	
+						<height>30</height>
+						<textcolor>button_focus</textcolor>
+						<label>$LOCALIZE[31173]: [COLOR grey]$VAR[ItemDurationVar][/COLOR]</label>
+					</control>
+					<control type="image"> 
+						<left>1045</left>
+						<top>48</top>
+						<width>38</width>
+						<height>38</height>
+						<texture >$VAR[EPG_Genre_Icon,flags/epggenreicons/,.png]</texture> 
+						<visible>true</visible>
+					</control>
+					<control type="label">
+						<top>46</top>
+						<left>945</left>
+						<width>150</width>
+						<height>30</height>
+						<textcolor>button_focus</textcolor>
+						<label>$LOCALIZE[515]:</label>
+					</control>
+					<control type="label">
+						<top>46</top>
+						<left>1045</left>
+						<width>800</width>
+						<height>30</height>
+						<textcolor>button_focus</textcolor>
+						<label>[COLOR grey]$INFO[ListItem.Genre][/COLOR]</label>
+						<animation effect="slide" start="0,0" end="47,0" condition="String.StartsWith(ListItem.Genre,Movie) + !String.Contains(ListItem.Genre,Science Fiction)">Conditional</animation>
+						<animation effect="slide" start="0,0" end="47,0" condition="String.Contains(ListItem.Genre,News) | String.Contains(ListItem.Genre,Documentary) | String.Contains(ListItem.Genre,Game Show) + !String.Contains(ListItem.Genre,Darts)">Conditional</animation>
+						<animation effect="slide" start="0,0" end="47,0" condition="String.Contains(ListItem.Genre,Football) | String.Contains(ListItem.Genre,Soccer) | String.Contains(ListItem.Genre,Rugby) | String.Contains(ListItem.Genre,Snooker) | String.Contains(ListItem.Genre,Cycling) | String.Contains(ListItem.Genre,Cricket) | String.Contains(ListItem.Genre,Darts) | String.Contains(ListItem.Genre,Motorsport) | String.Contains(ListItem.Genre,Auto Racing) | String.Contains(ListItem.Genre,Tennis) | String.Contains(ListItem.Genre,Wrestling) | String.Contains(ListItem.Genre,Motorcycle Racing) | String.Contains(ListItem.Genre,Horse Racing) | String.Contains(ListItem.Genre,Boxing)">Conditional</animation>
+						<animation effect="slide" start="0,0" end="47,0" condition="String.Contains(ListItem.Genre,Drama) + !String.Contains(ListItem.Genre,Movie) + !String.Contains(ListItem.Genre,Science Fiction)">Conditional</animation>
+						<animation effect="slide" start="0,0" end="47,0" condition="String.Contains(ListItem.Genre,Science Fiction) | String.IsEqual(ListItem.Genre,Series / Science Fiction / Fanatasy / Adventure / Drama)">Conditional</animation>
+					</control>
+					<control type="textbox">
+						<left>270</left>
+						<top>100</top>
+						<width>1550</width>
+						<height>130</height>
+						<label>$VAR[FlagLabel_TVGuide]$VAR[Text_Based_Premiere_Flags_TVGuide]$INFO[ListItem.Season,Season ,  ]$INFO[ListItem.Episode,Episode , - ][COLOR grey][B]$INFO[ListItem.EpisodeName,(,). ][/B][/COLOR]$INFO[ListItem.Plot]</label>
+						<autoscroll delay="10000" time="3000" repeat="10000">Skin.HasSetting(AutoScroll)</autoscroll>
+					</control>
+					
+
+				</control>	
+				<control type="image">
+						<left>375</left>
+						<top>123</top>
+						<width>150</width>
+						<height>50</height>
+						<texture>ratings/imdb/imdb.png</texture>
+				</control>
+				<control type="image"> 
+						<left>465</left>
+						<top>126</top>
+						<width>120</width>
+						<height>35</height>
+						<texture fallback="ratings/imdb/0.0.png" colordiffuse="yellow">$INFO[Window(Home).Property(SkinHelper.ListItem.Rating),ratings/imdb/,.png]</texture>
+				</control>
+			</control>
+			<include>PVRChannelNumberInput</include>
+			
+			
+			
+			
+			<include content="BottomBar">
+				<param name="info_visible" value="true" />
+			</include>
+			<control type="group">
+				<include>MediaMenuCommon</include>
+				<include content="PVRSideBar">
+					<param name="group_label2" value="$INFO[Control.GetLabel(30)]" />
+				</include>
+			</control>
+		</control>
+		<control type="label" id="29">
+			<font></font>
+			<include>HiddenObject</include>
+		</control>
+		<control type="label" id="30">
+			<font></font>
+			<include>HiddenObject</include>
+		</control>
+	</controls>
+</window>

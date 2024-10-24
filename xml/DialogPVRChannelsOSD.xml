@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">11</defaultcontrol>
+	<controls>
+		<control type="group">
+			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
+			<control type="group">
+				<depth>DepthOSD</depth>
+				<include>OpenClose_Left</include>
+				<control type="image">
+					<left>0</left>
+					<bottom>0</bottom>
+					<width>100%</width>
+					<height>34.4%</height>
+					<texture>dialogs/dialog-bg-nobo.png</texture>
+				</control>
+				<control type="label">
+					<left>1170</left>
+					<bottom>272</bottom>
+					<height>90</height>
+					<width>735</width>
+					<align>center</align>
+					<label fallback="19055">[B][COLOR button_focus]$INFO[ListItem.Title] $VAR[PVR_Movie_Year_VAR][/COLOR][/B]</label> 
+					<shadowcolor>text_shadow</shadowcolor>
+					<scroll>true</scroll>
+				</control>
+				<control type="textbox">
+					<left>1200</left>
+					<bottom>220</bottom>
+					<width>675</width>
+					<height>100</height>
+					<align>center</align>
+					<label>$INFO[ListItem.StartTime,, - ]$INFO[ListItem.EndTime][B]  •  [/B]Duration: $VAR[ItemDurationVar]</label>
+					<autoscroll delay="10000" time="5000" repeat="10000">Skin.HasSetting(AutoScroll)</autoscroll>
+				</control>
+				<control type="label">
+					<bottom>-10</bottom>
+					<left>1170</left>
+					<width>730</width>
+					<height>290</height>
+					<font>font27</font>
+					<align>center</align>
+					<textcolor>80FFFFFF</textcolor>
+					<label>[B][COLOR button_focus]$INFO[ListItem.Season,[COLOR 80FFFFFF]S[/COLOR]][/COLOR][COLOR button_focus]$INFO[ListItem.Episode,[COLOR 80FFFFFF]xE[/COLOR]][/COLOR][COLOR 80FFFFFF] $INFO[ListItem.EpisodeName,(,)][/COLOR][/B]</label>
+					<scroll>true</scroll>
+				</control>
+				<control type="textbox">
+					<bottom>60</bottom>
+					<left>1170</left>
+					<width>730</width>
+					<height>220</height>
+					<font>font27</font>
+					<align>center</align>
+					<textcolor>80FFFFFF</textcolor>
+					<label>$INFO[ListItem.Plot]</label>
+					<autoscroll delay="10000" time="3000" repeat="10000">Skin.HasSetting(AutoScroll)</autoscroll>
+					<animation effect="slide" start="0,0" end="0,35" condition="!String.IsEmpty(ListItem.Season) | !String.IsEmpty(ListItem.Episode) | !String.IsEmpty(ListItem.EpisodeName)">Conditional</animation>
+				</control>
+				<control type="image" id="9876">
+					<depth>DepthOSD+</depth>
+					<left>20</left>
+					<bottom>20</bottom>
+					<width>340</width>
+					<height>460</height>
+					<texture background="true">$VAR[NowPVRPoster_Backend_Var]</texture>
+					<include>OpenClose_Left</include>
+					<visible>!Window.IsVisible(playerprocessinfo) + !Window.IsVisible(videobookmarks) + !Window.IsVisible(1122)</visible>
+					<visible>!Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD) + !Skin.HasSetting(Display_Landscape_Format_Artwork_LiveTV)</visible>
+				</control>
+				<control type="image" id="9877">
+					<depth>DepthOSD+</depth>
+					<left>20</left>
+					<bottom>20</bottom>
+					<width>340</width>
+					<height>460</height>
+					<texture fallback="DefaultPVRPoster.png" background="true">$VAR[NowPVRPoster_SkinHelper_Var]</texture>
+					<include>OpenClose_Left</include>
+					<visible>String.IsEmpty(Control.GetLabel(9876))</visible>
+					<visible>!Window.IsVisible(playerprocessinfo) + !Window.IsVisible(videobookmarks) + !Window.IsVisible(1122)</visible>
+					<visible>!Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD) + !Skin.HasSetting(Display_Landscape_Format_Artwork_LiveTV)</visible>
+				</control>
+				<control type="image">
+					<depth>DepthOSD+</depth>
+					<left>20</left>
+					<bottom>20</bottom>
+					<width>340</width>
+					<height>460</height>
+					<texture background="true">$VAR[NowPVRPoster_Local_Artwork_Var]</texture>
+					<include>OpenClose_Left</include>
+					<visible>!Window.IsVisible(playerprocessinfo) + !Window.IsVisible(videobookmarks) + !Window.IsVisible(1122)</visible>
+					<visible>!Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD) + !Skin.HasSetting(Display_Landscape_Format_Artwork_LiveTV)</visible>
+				</control>
+				<control type="image" id="9876"> 
+					<left>15</left>
+					<bottom>70</bottom>
+					<width>335</width>
+					<height>210</height>
+					<texture fallback="defaultpvrfanartformat.png">$VAR[NowPVRPoster_Backend_Var]</texture>  
+					<visible>!Skin.HasSetting(Show_Channel_Name_On_OSD) + Skin.HasSetting(Display_Landscape_Format_Artwork_LiveTV)</visible> 
+				</control>
+			<control type="image" id="9878"> 
+					<left>15</left>
+					<bottom>70</bottom>
+					<width>335</width>
+					<height>210</height>
+					<texture>$VAR[NowPVR_Fanart_Local_Artwork_Var]</texture> 
+					<visible>!Skin.HasSetting(Show_Channel_Name_On_OSD) + Skin.HasSetting(Display_Landscape_Format_Artwork_LiveTV)</visible>
+			</control>
+				<control type="image">
+					<left>30</left>
+					<bottom>35</bottom>
+					<width>300</width>
+					<height>300</height>
+					<aspectratio align="right">keep</aspectratio>
+					<texture>$INFO[listitem.icon]</texture>
+					<include>OpenClose_Left</include>
+					<visible>!Window.IsVisible(playerprocessinfo) + !Window.IsVisible(videobookmarks) + !Window.IsVisible(1122)</visible>
+					<visible>Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD) + !Skin.HasSetting(Display_Landscape_Format_Artwork_LiveTV)</visible>
+				</control>
+				<control type="image">
+					<depth>DepthOSD+</depth>
+					<left>5</left>
+					<bottom>0</bottom>
+					<width>400</width>
+					<height>550</height>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture background="true">$VAR[PVRPoster_ListItem_Local_Artwork_Var]</texture>
+					<bordertexture border="21">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<include>OpenClose_Left</include>
+					<visible>Pvr.IsPlayingRadio</visible>
+					<visible>!Window.IsVisible(playerprocessinfo) + !Window.IsVisible(videobookmarks) + !Window.IsVisible(1122)</visible>
+				</control>
+				
+								
+				<control type="fixedlist" id="11">
+					<bottom>15</bottom>
+					<left>365</left>
+					<width>775</width>
+					<height>33%</height>
+					<onleft>PreviousChannelGroup</onleft>
+					<onright>NextChannelGroup</onright>
+					<onup>11</onup>
+					<ondown>11</ondown>
+					<pagecontrol>60</pagecontrol>
+					<movement>4</movement>
+					<focusposition>5</focusposition>
+					<scrolltime tween="cubic" easing="out">500</scrolltime>
+					<focusedlayout height="90" width="775">
+						<control type="image">
+							<left>0</left>
+							<right>0</right>
+							<bottom>0</bottom>
+							<texture colordiffuse="button_focus">lists/focus.png</texture>
+							<visible>Control.hasFocus(11)</visible>
+						</control>
+						<control type="image">
+							<left>75</left>
+							<top>11</top>
+							<width>80</width>
+							<height>70</height>
+							<aspectratio align="right">keep</aspectratio>
+							<texture>$INFO[listitem.icon]</texture>
+							<visible>!Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD)</visible>
+						</control>
+						<control type="image"> 
+							<right>65</right>
+							<top>12</top>
+							<width>35</width>
+							<height>34</height>
+							<align>right</align>
+							<texture >$VAR[EPG_Genre_Icon,flags/epggenreicons/,.png]</texture> 
+							<visible>true</visible>
+						</control>
+						<control type="image"> 
+							<right>20</right>
+							<top>18</top>
+							<width>35</width>
+							<height>27</height>
+							<texture fallback="flags/videoresolution/sd.png">$VAR[PVR_HDTV_Var,flags/hdtv/,.png]</texture>
+						</control>
+						<control type="image"> 
+							<right>65</right>
+							<top>15</top>
+							<top>55</top>
+							<width>30</width>
+							<height>30</height>
+							<texture>$VAR[PVR_MovieGenreOSDVar,flags/genre/,.png]</texture>
+						</control>
+						<control type="progress">
+							<right>20</right>
+							<top>58</top>
+							<width>80</width>
+							<height>12</height>
+							<midtexture border="3">progress/texturebg_white.png</midtexture>
+							<visible>ListItem.HasEpg</visible>
+							<info>ListItem.Progress</info>
+						</control> 
+						<control type="image">
+							<right>100</right>
+							<top>45</top>
+							<width>40</width>
+							<height>40</height>
+							<texture>$VAR[PVRStatusImageVar]</texture>
+						</control>
+						<control type="label">
+							<left>180</left>
+							<top>6</top>
+							<height>90</height>
+							<right>120</right>
+							<aligny>top</aligny>
+							<font>font14</font>
+							<animation effect="slide" start="0,0" end="0,14" time="0" condition="String.IsEmpty(ListItem.Title)">Conditional</animation>
+							<label>$INFO[ListItem.Label]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+							<animation effect="slide" start="0,0" end="-105,0" condition="Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD)">Conditional</animation>
+						</control>
+						<control type="label">
+							<left>180</left>
+							<top>44</top>
+							<height>90</height>
+							<right>120</right>
+							<aligny>top</aligny>
+							<font>font12</font>
+							<label>$INFO[ListItem.Title]</label> 
+							<shadowcolor>text_shadow</shadowcolor>
+							<animation effect="slide" start="0,0" end="-105,0" condition="Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD)">Conditional</animation>
+						</control>
+						<control type="label">
+							<left>5</left>
+							<top>0</top>
+							<height>90</height>
+							<width>75</width>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font32_title</font>
+							<label>$INFO[ListItem.ChannelNumberLabel]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>
+					</focusedlayout>
+					<itemlayout height="90" width="775">
+						<control type="image">
+							<left>75</left>
+							<top>11</top>
+							<width>80</width>
+							<height>70</height>
+							<aspectratio align="right">keep</aspectratio>
+							<texture>$INFO[listitem.icon]</texture>
+							<visible>!Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD)</visible>
+						</control>
+						<control type="progress">
+							<right>20</right>
+							<top>58</top>
+							<width>50</width>
+							<height>12</height>
+							<colordiffuse>88FFFFFF</colordiffuse>
+							<visible>ListItem.HasEpg</visible>
+							<info>ListItem.Progress</info>
+						</control>
+						<control type="image">
+							<right>70</right>
+							<top>43</top>
+							<width>40</width>
+							<height>40</height>
+							<texture>$VAR[PVRStatusImageVar]</texture>
+						</control>
+						<control type="label">
+							<left>180</left>
+							<top>6</top>
+							<height>90</height>
+							<right>120</right>
+							<aligny>top</aligny>
+							<font>font14</font>
+							<label>$INFO[ListItem.Label]</label>
+							<animation effect="slide" start="0,0" end="0,14" time="0" condition="String.IsEmpty(ListItem.Title)">Conditional</animation>
+							<shadowcolor>text_shadow</shadowcolor>
+							<animation effect="slide" start="0,0" end="-105,0" condition="Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD)">Conditional</animation>
+						</control>
+						<control type="label">
+							<left>180</left>
+							<top>44</top>
+							<height>90</height>
+							<right>120</right>
+							<aligny>top</aligny>
+							<font>font12</font>
+							<label>$INFO[ListItem.Title]</label>
+							<shadowcolor>text_shadow</shadowcolor>
+							<textcolor>grey</textcolor>
+							<animation effect="slide" start="0,0" end="-105,0" condition="Skin.HasSetting(Show_Channel_Icon_On_PVRChannels_OSD)">Conditional</animation>
+						</control>
+						<control type="label">
+							<left>5</left>
+							<top>0</top>
+							<height>90</height>
+							<width>75</width>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font32_title</font>
+							<label>$INFO[ListItem.ChannelNumberLabel]</label>
+							<textcolor>grey</textcolor>
+							<shadowcolor>text_shadow</shadowcolor>
+						</control>
+					</itemlayout>
+				</control>
+				<control type="scrollbar" id="60">
+					<left>1415</left>
+					<bottom>15</bottom>
+					<width>20</width>
+					<height>33%</height>
+					<onleft>11</onleft>
+					<texturesliderbackground colordiffuse="22FFFFFF">colors/white.png</texturesliderbackground>
+					<onright>NextChannelGroup</onright>
+					<ondown>61</ondown>
+					<onup>61</onup>
+					<animation effect="zoom" start="100,100" end="50,100" center="881,0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(60)">conditional</animation>
+					<orientation>vertical</orientation>
+				</control>
+				
+			</control>
+			<control type="group">
+				<depth>DepthOSD</depth>
+				<include>Animation_TopSlide</include>
+				<control type="image">
+					<left>0</left>
+					<width>880</width>
+					<height>110</height>
+					<texture>frame/InfoBar.png</texture>
+				</control>
+				<control type="label" id="2">
+					<description>header label</description>
+					<textoffsetx>40</textoffsetx>
+					<top>20</top>
+					<width>1000</width>
+					<height>70</height>
+					<font>font45</font>
+					<label>Now Playing: $INFO[VideoPlayer.Title]</label>
+					<shadowcolor>black</shadowcolor>
+				</control>
+				<control type="label" id="2">
+					<description>header label</description>
+					<textoffsetx>40</textoffsetx>
+					<top>75</top>
+					<width>830</width>
+					<height>70</height>
+					<font>font27</font>
+					<label>$VAR[LiveTV_OSD_Channel_Guide_SubLabelVar]  &lt; [COLOR button_focus]$INFO[VideoPlayer.ChannelGroup][/COLOR] &gt;</label>
+					<shadowcolor>black</shadowcolor>
+				</control>
+			</control>
+		</control>
+		<include>PVRChannelNumberInput</include>
+	</controls>
+</window>

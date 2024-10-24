@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="View_510_Card">
+		<control type="button" id="20000">
+			<description>Dummy button to get animations right (hide focusedlayout on animations)</description>
+			<include>HiddenObject</include>
+			<animation effect="fade" delay="500" time="0" start="100" end="0">Visible</animation>
+			<animation effect="fade" delay="500" time="0" start="100" end="0">WindowOpen</animation>
+			<onclick>noop</onclick>
+			<visible>Control.IsVisible(510)</visible>
+		</control>
+		<control type="group">
+			<description>Post Card Viewtype</description>
+			<centertop>50%</centertop>
+			<height>720</height>
+			<control type="image">
+				<left>0</left>
+				<top>4</top>
+				<width>100%</width>
+				<height>724</height>
+				<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+				<animation effect="fade" time="200">VisibleChange</animation>
+				<texture colordiffuse="E6FFFFFF">dialogs/dialog-bg-nobo.png</texture>
+				<visible>Control.IsVisible(510)</visible>
+			</control>
+			<control type="group">
+				<visible>Control.IsVisible(510)</visible>
+				<include>Visible_Right</include>
+				<include>OpenClose_Right</include>
+				<control type="fixedlist" id="510">
+					<left>0</left>
+					<top>0</top>
+					<width>110%</width>
+					<height>704</height>
+					<focusposition>1</focusposition>
+					<movement>0</movement>
+					<pagecontrol>5199</pagecontrol>
+					<scrolltime tween="cubic" easing="out">500</scrolltime>
+					<orientation>horizontal</orientation>
+					<onleft>510</onleft>
+					<onup>9000</onup>
+					<ondown>5199</ondown>
+					<onright>510</onright>
+					<hitrect x="0" y="0" w="800" h="400" />
+					<visible>Container.Content(movies) | Container.Content(tvshows)</visible>
+					<preloaditems>1</preloaditems>
+					<viewtype label="Card">icon</viewtype>
+					<itemlayout width="490">
+						<control type="group">
+							<left>-380</left>
+							<top>18</top>
+							<include>Modded_InfoWallMovieLayout</include>
+						</control>
+					</itemlayout>
+					<focusedlayout width="490">
+						<control type="group">
+							<control type="group">
+								<left>-380</left>
+								<top>18</top>
+								<visible>Container.OnScrollPrevious</visible>
+								<visible>Control.IsVisible(20000)</visible>
+								<animation effect="fade" time="200" start="100" end="0">Hidden</animation>
+								<include>Modded_InfoWallMovieLayout</include>
+							</control>
+							<control type="group">
+								<left>-40</left>
+								<top>18</top>
+								<visible>Container.OnScrollNext</visible>
+								<visible>Control.IsVisible(20000)</visible>
+								<animation effect="fade" time="200" start="100" end="0">Hidden</animation>
+								<include>Modded_InfoWallMovieLayout</include>
+							</control>
+						</control>
+					</focusedlayout>
+				</control>
+				
+			</control>
+		</control>
+		<control type="group">
+			<centertop>50%</centertop>
+			<height>670</height>
+			<left>101</left>
+			<depth>DepthContentPopout</depth>
+			<visible>Control.IsVisible(510)</visible>
+			<include>OpenClose_Left</include>
+			<include>Visible_Left</include>
+			<control type="image">
+				<top>-16</top>
+				<left>-16</left>
+				<width>516</width>
+				<height>756</height>
+				<texture>colors/black.png</texture>
+				<bordertexture border="21">overlays/shadow.png</bordertexture>
+				<bordersize>20</bordersize>
+			</control>
+			<control type="image">
+				<left>4</left>
+				<top>4</top>
+				<width>476</width>
+				<height>290</height>
+				<fadetime>200</fadetime>
+				<aspectratio>stretch</aspectratio>
+				<texture background="true">$VAR[WidgetThumbViewVar]</texture>
+			</control>
+			<control type="image">
+				<left>4</left>
+				<top>4</top>
+				<width>476</width>
+				<height>290</height>
+				<fadetime>200</fadetime>
+				<aspectratio>stretch</aspectratio>
+				<texture fallback="DefaultMovies.png" background="true">$INFO[ListItem.Art(fanart)]</texture>
+				<visible>String.IsEmpty(ListItem.Art(landscape))</visible>
+			</control>
+			<control type="image">
+				<left>1</left>
+				<top>1</top>
+				<width>482</width>
+				<height>721</height>
+				<visible>Control.HasFocus(510)</visible>
+				<animation effect="fade" time="100">VisibleChange</animation>
+				<texture border="8" colordiffuse="button_focus">buttons/thumbnail_focused.png</texture>
+			</control>
+			<control type="group">
+				<visible>String.IsEqual(ListItem.DBtype,tvshow)</visible>
+				<top>243</top>
+				<control type="image">
+					<left>5</left>
+					<top>1</top>
+					<width>474</width>
+					<height>50</height>
+					<texture colordiffuse="CCFFFFFF">overlays/overlayfade.png</texture>
+					<visible>!String.IsEmpty(ListItem.Art(landscape))</visible>
+				</control>
+				<control type="label">
+					<left>0</left>
+					<top>20</top>
+					<width>425</width>
+					<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
+					<font>font20_title</font>
+					<shadowcolor>text_shadow</shadowcolor>
+					<align>right</align>
+				</control>
+				<control type="image">
+					<left>435</left>
+					<top>23</top>
+					<width>24</width>
+					<height>24</height>
+					<texture>lists/played-total.png</texture>
+				</control>
+			</control>
+			<control type="image">
+				<left>5</left>
+				<top>295</top>
+				<width>473</width>
+				<height>110</height>
+				<visible>Control.HasFocus(510)</visible>
+				<animation effect="fade" time="100">VisibleChange</animation>
+				<texture>colors/white60.png</texture>
+				<visible>false</visible>
+			</control>
+			<control type="group">
+				<include content="ContentPanel">
+					<param name="left" value="-15" />
+					<param name="top" value="275" />
+					<param name="width" value="513" />
+					<param name="height" value="464" />
+					<param name="flipx" value="true" />
+				</include>
+			</control>
+			<control type="group">
+					<top>275</top>
+					<control type="group">
+						<left>15</left>
+						<top>135</top>
+						<height>295</height>
+						<width>455</width>
+						<visible>ListItem.IsCollection + String.IsEmpty(ListItem.PlotOutline) + String.IsEmpty(ListItem.Plot)</visible>
+						<include content="InfoList">
+							<param name="bottom" value="0" />
+							<param name="sortby" value="year" />
+							<param name="sortorder" value="ascending" />
+							<param name="font" value="font13" />
+						</include>
+					</control>
+					<control type="image">
+						<left>15</left>
+						<top>26</top>
+						<width>32</width>
+						<height>32</height>
+						<texture>$VAR[ListWatchedIconVar]</texture>
+					</control>
+					<control type="label">
+						<left>52</left>
+						<top>20</top>
+						<right>50</right>
+						<height>40</height>
+						<width>412</width>
+						<scroll>true</scroll>
+						<label>[COLOR button_focus]$INFO[ListItem.Label][/COLOR]$VAR[ListSubLabelVar]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+					</control>
+					<control type="group">
+						<top>49</top>
+						<left>12</left>
+						<control type="grouplist">
+							<left>0</left>
+							<top>0</top>
+							<width>580</width>
+							<height>540</height>
+							<aligny>center</aligny>
+							<itemgap>2</itemgap>
+							<orientation>vertical</orientation>
+							<usecontrolcoords>true</usecontrolcoords>
+							
+							<control type="grouplist">
+								<visible>!String.IsEmpty(ListItem.Genre)</visible>
+								<top>2</top>
+								<height>50</height>
+								<aligny>center</aligny>
+								<itemgap>10</itemgap>
+								<orientation>horizontal</orientation>
+								<usecontrolcoords>true</usecontrolcoords>
+								<control type="image">
+									<width>50</width>
+									<texture>DefaultGenre.png</texture>
+								</control>
+								<control type="label">
+									<top>-1</top>
+									<left>-6</left>
+									<width>405</width>
+									<font>font12</font>
+									<aligny>center</aligny>
+									<aspectratio aligny="center">keep</aspectratio>
+									<label>$INFO[ListItem.Genre]</label>
+									<scroll>false</scroll>
+								</control>
+							</control>			
+							<control type="grouplist">
+								<top>-15</top>
+								<height>50</height>
+								<itemgap>10</itemgap>
+								<orientation>horizontal</orientation>
+								<usecontrolcoords>true</usecontrolcoords>
+								<control type="group">
+									<visible>!String.IsEmpty(ListItem.Rating)</visible>
+									<width>180</width>
+									<control type="image">
+										<top>7</top>
+										<left>-2</left>
+										<width>145</width>
+										<height>40</height>
+										<aspectratio aligny="center">keep</aspectratio>
+										<texture>ratings/imdb/imdb.png</texture>
+									</control>
+									<control type="image">
+										<top>7</top>
+										<left>82</left>
+										<width>90</width>
+										<height>35</height>
+										<texture fallback="ratings/imdb/0.0.png" colordiffuse="yellow">$INFO[ListItem.Rating,ratings/imdb/,.png]</texture>
+									</control>
+								</control>
+								<control type="group">
+									<visible>!String.IsEmpty(ListItem.Rating)</visible>
+									<width>180</width>
+									<control type="image">
+										<top>12</top>
+										<left>-5</left>
+										<width>33</width>
+										<height>28</height>
+										<texture>ratings/tmdb/tmdb.png</texture>
+									</control>
+									<control type="image">
+										<top>11</top>
+										<left>42</left>
+										<width>30</width>
+										<height>30</height>
+										<texture fallback="ratings/tmdb/0.0.png">$INFO[ListItem.Rating,ratings/tmdb/,.png]</texture>
+									</control>
+								</control>
+							</control>	
+							<control type="grouplist">
+								<top>-55</top>
+								<left>271</left>
+								<width>540</width>
+								<height>60</height>
+								<itemgap>10</itemgap>
+								<orientation>horizontal</orientation>
+								<usecontrolcoords>true</usecontrolcoords>
+								<control type="group">
+									<control type="image">
+										<top>12</top>
+										<left>5</left>
+										<height>31</height>
+										<width>36</width>
+										<texture>icons/pvr/mpaa.png</texture>
+										<animation effect="slide" start="0,0" end="-270,0" condition="String.IsEmpty(ListItem.Rating)">Conditional</animation>
+									</control>
+									<control type="image">
+										<top>6</top>
+										<left>48</left>
+										<height>45</height>
+										<width>90</width>
+										<aspectratio aligny="center">keep</aspectratio>
+										<texture fallback="flags/mpaa/rated2.png">$VAR[MPAARatingIcons_Movies_List_Var]</texture>
+										<animation effect="slide" start="0,0" end="-270,0" condition="String.IsEmpty(ListItem.Rating)">Conditional</animation>
+										<visible>Container.Content(movies)</visible>
+									</control>
+									<control type="image">
+										<top>6</top>
+										<left>48</left>
+										<height>45</height>
+										<width>90</width>
+										<aspectratio aligny="center">keep</aspectratio>
+										<texture fallback="flags/mpaa/rated2.png">$VAR[MPAARatingIcons_TVShows_List_Var]</texture>
+										<animation effect="slide" start="0,0" end="-270,0" condition="String.IsEmpty(ListItem.Rating)">Conditional</animation>
+										<visible>Container.Content(tvshows)</visible>
+									</control>
+								</control>
+							</control>
+							<control type="grouplist">
+							<visible>Container.Content(tvshows)</visible>
+								<top>2</top>
+								<height>50</height>
+								<aligny>center</aligny>
+								<itemgap>10</itemgap>
+								<orientation>horizontal</orientation>
+								<usecontrolcoords>true</usecontrolcoords>
+								<control type="image">
+									<width>50</width>
+									<texture>DefaultTVShows.png</texture>
+									<visible>String.IsEqual(ListItem.DbType,tvshow) + !String.IsEqual(ListItem.Season,0)</visible>
+								</control>
+								<control type="label">
+									<top>-4</top>
+									<left>-3</left>
+									<width>480</width>
+									<scroll>true</scroll>
+									<font>font12</font>
+									<aligny>center</aligny>
+									<aspectratio aligny="center">keep</aspectratio>
+									<label>$VAR[Media_info_Total_Seasons_Var]</label>
+								</control>
+								<visible>false</visible>
+							</control>
+						</control>						
+					</control>
+					<control type="textbox">
+						<left>15</left>
+						<top>138</top>
+						<height>295</height>
+						<width>455</width>
+						<right>115</right>
+						<autoscroll time="3000" delay="7000" repeat="5000">!System.HasActiveModalDialog + Skin.HasSetting(AutoScroll)</autoscroll>
+						<label>$INFO[ListItem.Plot]</label>
+						<font>font27</font>
+						<shadowcolor>text_shadow</shadowcolor>
+						<visible>![ListItem.IsCollection + String.IsEmpty(ListItem.PlotOutline) + String.IsEmpty(ListItem.Plot)]</visible>
+					</control>
+			</control>
+		</control>
+	</include>
+</includes>

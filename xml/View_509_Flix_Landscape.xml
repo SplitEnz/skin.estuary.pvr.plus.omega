@@ -1,0 +1,252 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="View_509_Flix_Landscape">
+	<defaultcontrol always="true">509</defaultcontrol> 
+	<backgroundcolor>background</backgroundcolor>
+	<views>509</views>
+	<menucontrol>9000</menucontrol>
+	
+		<control type="group">
+		<visible>Control.IsVisible(509)</visible>
+			<control type="image">
+				<aspectratio>scale</aspectratio>
+				<aligny>top</aligny>
+				<right>0</right>
+				<height>55%</height>
+				<width>55%</width>
+				<depth>DepthBackground</depth>
+				<texture>$INFO[ListItem.Art(fanart)]</texture>
+			</control>
+			<control type="image">
+				<aspectratio>scale</aspectratio>
+				<include>FullScreenDimensions</include>
+				<depth>DepthBackground</depth>
+				<texture colordiffuse="primary_background">overlays/netflixoverlay3.png</texture>
+			</control>
+			<include>Flix_Landscape_Top_Left_Info_Layout</include>
+			<control type="image">
+				<left>40</left>
+				<top>252</top>
+				<width>85</width>
+				<height>70</height>
+				<texture>DefaultAddonVideo.png</texture> 
+				<visible>Container.Content(sets)</visible>
+				<visible>false</visible>
+			</control>
+			<control type="image">
+				<left>130</left>
+				<top>258</top>
+				<width>47</width>
+				<height>47</height>
+				<font>font27</font>
+				<texture>$INFO[Window(Home).Property(SkinHelper.ListItem.Count),ratings/Movie_Sets/Count/,.png]</texture> 
+				<autoscroll delay="6000" time="5000" repeat="10000">Skin.HasSetting(autoscroll)</autoscroll>
+				<visible>ListItem.IsCollection</visible>
+				<visible>false</visible>
+			</control>
+		<control type="grouplist">
+			<top>277</top>
+			<left>50</left>
+			<height>65</height>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="group">
+				<visible>!String.IsEmpty(ListItem.Rating) + ListItem.IsCollection</visible>
+				<width>850</width>
+				<control type="image">
+					<top>0</top>
+					<left>0</left>
+					<width>33</width>
+					<height>28</height>
+					<texture>ratings/tmdb/tmdb.png</texture>
+				</control>
+				<control type="image">
+					<top>-1</top>
+					<left>48</left>
+					<width>30</width>
+					<height>30</height>
+					<texture fallback="ratings/tmdb/0.0.png">$INFO[ListItem.Rating,ratings/tmdb/,.png]</texture>
+				</control>
+			</control>
+		</control>			
+			<control type="label">
+				<left>140</left>
+				<top>272</top>
+				<width>650</width>
+				<height>47</height>
+				<font>font27</font>
+				<label>| Movies in Collection: [B][COLOR button_focus]$INFO[Container(59030).NumItems][/COLOR][/B]  |  Movies Watched: [B][COLOR button_focus]$VAR[Movie_Set_Watched_Count_Var][/COLOR][/B]</label> 
+				<autoscroll delay="6000" time="5000" repeat="10000">Skin.HasSetting(autoscroll)</autoscroll>
+				<visible>ListItem.IsCollection</visible>
+			</control>					
+			
+			<control type="textbox">
+				<left>50</left>
+				<top>315</top>
+				<width>900</width>
+				<height>155</height>
+				<font>font27</font>
+				<label>$INFO[ListItem.Plot][CR]</label> 
+				<autoscroll delay="6000" time="5000" repeat="10000">Skin.HasSetting(autoscroll)</autoscroll>
+				<visible>[!ListItem.IsCollection + !ListItem.IsParentFolder] | !Container.Content()</visible>
+				
+			</control>
+		</control>
+	<control type="group">
+			<include>OpenClose_Right</include>
+			<visible>Control.IsVisible(509)</visible>
+			<visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content() | Container.Content(sets)</visible>
+			<include>Visible_Right</include>
+			<left>-6</left>
+			<right>0</right>
+			<top>405</top>
+			<animation effect="slide" end=",-10" time="0" condition="Container.Content(images) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets)">Conditional</animation>
+			<control type="panel" id="509">
+				<visible>Container.Content(images) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets)</visible>
+				<top>80</top>
+				<width>100%</width>
+				<height>650</height>
+				<onup condition="!Skin.HasSetting(KioskMode)">9000</onup>
+				<onright>509</onright>
+				<onleft>509</onleft>
+				<ondown>60</ondown>
+				<viewtype label="Flix Landscape">bigwrap</viewtype>
+				<pagecontrol>60</pagecontrol>
+                 <focusposition></focusposition>
+				<scrolltime tween="cubic" easing="out">500</scrolltime>
+				<orientation>horizontal</orientation>
+				<preloaditems>8</preloaditems>
+				<itemlayout height="264" width="495" condition="Container.Content(images)">
+				<control type="image">
+				<left>10</left>
+				<top>23</top>
+                <width>425</width>
+                <height>230</height>
+				<texture background="true" diffuse="episodematte.png">$INFO[ListItem.Icon]</texture>
+				<aspectratio>stretch</aspectratio>
+				</control>
+				<control type="image">
+				<left>-10</left>
+				<top>0</top>
+                <width>469</width>
+                <height>278</height>
+				<texture colordiffuse="grey3">overlays/episodeframe.png</texture>
+				</control>
+				</itemlayout>
+				<focusedlayout height="264" width="495" condition="Container.Content(images)">
+				<control type="image">
+						<left>10</left>
+						<top>23</top>
+						<width>425</width>
+						<height>230</height>
+						<texture background="true" diffuse="overlays/episodematte.png">$INFO[ListItem.Icon]</texture>
+						<aspectratio>stretch</aspectratio>
+				</control>
+				<control type="image">
+						<left>-10</left>
+						<top>0</top>
+                        <width>469</width>
+                        <height>278</height>
+						<texture colordiffuse="button_focus">overlays/episodeframe.png</texture>
+				</control>
+				</focusedlayout>
+				<itemlayout height="264" width="495" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets)">
+				<control type="image">
+						<left>11</left>
+						<top>21</top>
+                        <width>425</width>
+                        <height>232</height>
+						<texture fallback="DefaultVideo.png" background="true" diffuse="overlays/episodematte.png">$VAR[WidgetThumbViewVar]</texture>						<aspectratio>stretch</aspectratio>
+				</control>
+				<control type="image">
+						<left>11</left>
+						<top>21</top>
+						<width>425</width>
+						<height>232</height>
+						<texture fallback="DefaultVideo.png"  background="true" diffuse="overlays/episodematte.png">$INFO[ListItem.Art(fanart)]</texture>
+						<aspectratio>stretch</aspectratio>
+						<visible>String.IsEmpty(ListItem.Art(season.landscape)) + String.IsEmpty(ListItem.Art(tvshow.landscape)) + String.IsEmpty(ListItem.Art(landscape))</visible>
+						<visible>!ListItem.IsParentFolder</visible>
+				</control>
+				<control type="image">
+                        <left>-10</left>
+                        <top>0</top>
+                        <width>469</width>
+                        <height>278</height>
+                        <texture colordiffuse="grey3">overlays/episodeframe.png</texture>
+                </control>
+				<control type="image">
+						<left>13</left>
+						<top>185</top>
+						<width>70</width>
+						<height>70</height>
+						<texture>overlays/overlay-bg.png</texture>
+						<visible>ListItem.IsResumable | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)</visible>
+				</control>
+				<control type="image">
+						<left>13</left>
+						<top>226</top>
+						<width>28</width>
+						<height>28</height>
+						<texture>$VAR[WallWatchedIconVar]</texture>
+				</control>
+				</itemlayout>
+				<focusedlayout height="264" width="495" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets)">
+					<control type="image">
+						<left>11</left>
+						<top>21</top>
+						<width>425</width>
+						<height>232</height>
+						<texture fallback="DefaultVideo.png"  background="true" diffuse="episodematte.png">$VAR[WidgetThumbViewVar]</texture>
+						<aspectratio>stretch</aspectratio>
+					</control>
+					<control type="image">
+						<left>-10</left>
+						<top>0</top>
+                        <width>469</width>
+                        <height>278</height>
+						<texture colordiffuse="button_focus">overlays/episodeframe.png</texture>
+						<depth>DepthContentPopout</depth>
+					</control>
+					<control type="image">
+						<left>11</left>
+						<top>21</top>
+						<width>425</width>
+						<height>232</height>
+						<texture fallback="DefaultVideo.png"  background="true" diffuse="episodematte.png">$INFO[ListItem.Art(fanart)]</texture>
+						<aspectratio>stretch</aspectratio>
+						<visible>String.IsEmpty(ListItem.Art(season.landscape)) + String.IsEmpty(ListItem.Art(tvshow.landscape)) + String.IsEmpty(ListItem.Art(landscape))</visible>
+						<visible>!ListItem.IsParentFolder</visible>
+					</control>
+					<control type="image">
+						<left>13</left>
+						<top>185</top>
+						<width>70</width>
+						<height>70</height>
+						<texture>overlays/overlay-bg.png</texture>
+						<visible>ListItem.IsResumable | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)</visible>
+					</control>
+					<control type="image">
+						<left>13</left>
+						<top>226</top>
+						<width>28</width>
+						<height>28</height>
+						<texture>$VAR[WallWatchedIconVar]</texture>
+					</control>
+				</focusedlayout>
+			</control>
+	</control>
+		<control type="scrollbar" id="60">
+			<bottom>0</bottom>
+			<height>12</height>
+			<width>100%</width>
+			<orientation>horizontal</orientation>
+			<texturesliderbackground />
+			<onup>509</onup>
+			<ondown>509</ondown>
+			<visible>Control.IsVisible(509)</visible>
+		</control>
+	</include>
+</includes>
