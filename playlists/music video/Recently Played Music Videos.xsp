@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<smartplaylist type="musicvideos">
-    <name>recently played music videos</name>
-    <match>all</match>
-    <rule field="lastplayed" operator="inthelast">
-        <value>14</value>
-    </rule>
-    <order direction="ascending">random</order>
-</smartplaylist>
