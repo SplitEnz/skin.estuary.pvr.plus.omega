@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="musicvideos">
+    <name>Absolute 80&apos;s</name>
+    <match>all</match>
+    <rule field="artist" operator="is">
+        <value>Aerosmith</value>
+        <value>Bruce Springsteen</value>
+        <value>Chris Rea</value>
+        <value>David Bowie</value>
+        <value>Dire Straits</value>
+        <value>Duran Duran</value>
+        <value>Eighth Wonder</value>
+        <value>Eurythmics</value>
+        <value>Genesis</value>
+        <value>INXS</value>
+        <value>Kate Bush</value>
+        <value>Madness</value>
+        <value>Neneh Cherry</value>
+        <value>Phil Collins</value>
+        <value>The Police</value>
+        <value>Simple Minds</value>
+        <value>Soft Cell</value>
+        <value>Spandau Ballet</value>
+        <value>Talk Talk</value>
+        <value>Tears For Fears</value>
+        <value>U2</value>
+    </rule>
+    <rule field="year" operator="greaterthan">
+        <value>1979</value>
+    </rule>
+    <rule field="year" operator="lessthan">
+        <value>1990</value>
+    </rule>
+    <limit>50</limit>
+    <order direction="ascending">random</order>
+</smartplaylist>
