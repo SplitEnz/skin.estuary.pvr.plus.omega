@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<defaultcontrol></defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<onload condition="System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(hide_background_fanart)">RunScript(script.artistslideshow)</onload>
+	<controls>
+		<control type="visualisation" id="2">
+			<include>FullScreenDimensions</include>
+			<visible>Player.HasAudio</visible> 
+		</control>
+		<control type="group">
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
+			<visible>!Skin.HasSetting(hide_background_fanart)</visible>
+			<animation effect="zoom" start="105" end="130" center="auto" time="10000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(animate_background_fanart)">Conditional</animation>
+			<animation effect="slide" start="-30,-30" end="30,30" time="6000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(animate_background_fanart)">Conditional</animation>
+			<control type="image">
+				<aspectratio>scale</aspectratio>
+				<fadetime>400</fadetime>
+				<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+				<animation effect="fade" start="100" end="50" time="0" condition="Visualisation.Enabled">Conditional</animation>
+				<texture background="true">$VAR[MusicPlayerFanartVar]</texture>
+				<visible>String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))</visible>
+			</control>
+			<control type="image">
+				<aspectratio>scale</aspectratio>
+				<fadetime>400</fadetime>
+				<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+				<animation effect="fade" start="100" end="50" time="0" condition="Visualisation.Enabled">Conditional</animation>
+				<texture background="true">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</texture>
+			</control>
+		</control>
+		<control type="group">
+			<visible>!Visualisation.Enabled + [[String.IsEmpty(Player.Art(fanart)) + String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))] | Skin.HasSetting(hide_background_fanart)]</visible>
+			<include>ColoredBackgroundImages</include>
+		</control>
+		<control type="group">
+			<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + !MusicPlayer.Content(livetv)</visible>
+			<height>460</height>
+			<include>OpenClose_Left</include>
+			<include>Visible_Left</include>
+			<bottom>38</bottom>
+			
+			<control type="group"> 
+				<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + ![Window.IsActive(playerprocessinfo) | MusicPlayer.Content(livetv) | Window.IsActive(1139)]</visible>
+				
+				<left>510</left>
+				<top>-20</top>
+			<control type="image">
+				<left>-510</left>
+				<width>140%</width>
+				<height>245</height>
+				 <top>100</top>
+				<texture colordiffuse="80FFFFFF">dialogs/dialog-bg-nobo.png</texture>
+				<colordiffuse>osdpanel</colordiffuse>
+				
+			
+			</control>
+			
+				<control type="label">
+					<left>-20</left>
+					<top>103</top>
+					<width>1450</width>
+					<height>50</height>
+					<aligny>center</aligny>
+					<label>[B]$INFO[Player.Title][/B]</label>
+					<font>font45</font>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<left>-20</left>
+					<top>158</top>
+					<width>1450</width>
+					<height>50</height>
+					<aligny>center</aligny>
+					<label>$INFO[MusicPlayer.Artist]</label>
+					<font>font45</font>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<left>-80</left>
+					<top>212</top>
+					<width>1450</width>
+					<height>40</height>
+					<aligny>center</aligny>
+					<label>$INFO[MusicPlayer.Album]$VAR[MultiDiscVar] $INFO[MusicPlayer.Year, (,)]</label>
+					<font>font37</font>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+				</control>
+				<control type="grouplist">
+					<left>-80</left>
+					<top>255</top>
+					<width>1450</width>
+					<height>48</height>
+					<align>left</align>
+					<orientation>horizontal</orientation>
+					<itemgap>5</itemgap>
+					<control type="label">
+						<width min="0" max="1130">auto</width>
+						<height>48</height>
+						<label>$INFO[MusicPlayer.Genre]</label>
+						<font>font37</font>
+						<shadowcolor>black</shadowcolor>
+						<aligny>center</aligny>
+						<align>left</align>
+						<scroll>true</scroll>
+						<visible>!String.IsEmpty(MusicPlayer.Genre)</visible>
+					</control>
+					<control type="image">
+						<width>190</width>
+						<height>44</height>
+						<texture fallback="flags/starrating/0.png" colordiffuse="yellow">$INFO[MusicPlayer.UserRating,flags/starrating/,.png]</texture>
+						<aspectratio>keep</aspectratio>
+						<aligny>center</aligny>
+						<align>left</align>
+					</control>
+				</control>
+				<control type="label">
+					<left>-80</left>
+					<top>297</top>
+					<width>1450</width>
+					<height>40</height>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(1).Artist,[COLOR white][B]Next Up:[/B][/COLOR]  ][/COLOR][COLOR grey]$INFO[MusicPlayer.offset(1).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+					<visible>!Skin.HasSetting(show_mini_music_playlist) + !Player.IsInternetStream</visible>
+				</control>
+				
+				<control type="image">
+					<left>-85</left>
+					<top>152</top>
+					<width>60</width>
+					<height>60</height>
+					<texture>DefaultArtist.png</texture>
+					<visible>!String.IsEmpty(MusicPlayer.Artist)</visible> 
+				</control>
+				<control type="multiimage">
+                	<left>-75</left>
+					<top>113</top>
+                	<imagepath>icons/equalizer_colour</imagepath>
+                	<width>40</width>
+                	<height>35</height>
+                	<fadetime>50</fadetime>
+                	<timeperimage>50</timeperimage>
+                	<randomize>true</randomize>
+                	<visible>!Skin.HasSetting(music_equalizer(coloured))</visible>
+				</control>
+				<control type="image">
+                	<left>-90</left>
+					<top>103</top>
+                	
+                	<width>70</width>
+					<height>60</height>
+                	<texture>DefaultMusicSongs.png</texture>
+                	<visible>Skin.HasSetting(music_equalizer(coloured))</visible>
+				</control>
+				<control type="image">
+					<left>-100</left>
+					<bottom>395</bottom>
+					<width>500</width>
+					<height>281</height>
+					<texture background="true">$VAR[PlayerInfoClearLogoVar]</texture>
+					<aspectratio align="center" aligny="bottom">keep</aspectratio>
+					<visible>!Skin.HasSetting(enable_clearlogo) + ![VideoPlayer.Content(movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(LiveTV) + Pvr.IsPlayingRadio]</visible>
+				</control>
+			</control>
+		</control>
+		<control type="group">
+			<bottom>0</bottom>
+			<height>1080</height>
+			<include>OpenClose_Left</include>
+			<control type="group">
+            <top>150</top>
+            <visible>!Skin.HasSetting(enable_scrollingtext)</visible>
+            <visible>!Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
+            <animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout">Visible</animation>
+        	<animation effect="fade" start="0" end="100" time="350" tween="cubic" easing="inout">WindowOpen</animation>
+            <animation effect="fade" end="0" start="600" time="150">Hidden</animation>
+        	<animation effect="fade" end="0" start="100" time="150">WindowClose</animation>
+        	<animation effect="slide" end="0,205" time="350" tween="cubic" easing="inout" condition="!Player.ShowInfo + !Window.IsVisible(musicosd)">Conditional</animation>
+            <control type="label">
+                <description>Now Playing</description>
+                <left>0</left>
+                <top>0</top>
+                <right>0</right>
+                <label>$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]$INFO[MusicPlayer.Title,  ,]</label>
+                <scroll>true</scroll>
+                <font>font_musicvis_biggest</font>
+                <textcolor>77ffffff</textcolor>
+                <align>left</align>
+                <scrollspeed>55</scrollspeed>
+            </control>
+            <control type="label">
+                <description>Now Playing</description>
+                <left>0</left>
+                <top>100</top>
+                <right>0</right>
+                 <label>$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album, ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]$INFO[MusicPlayer.Album,  ,]</label>
+                <scroll>true</scroll>
+                <font>font_musicvis_bigger</font>
+                <textcolor>44cccccc</textcolor>
+                <align>left</align>
+                <scrollspeed>100</scrollspeed>
+            </control>
+            <control type="label">
+                <description>Now Playing</description>
+                <left>0</left>
+                <top>210</top>
+                <right>0</right>
+                <label>$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]$INFO[MusicPlayer.Artist,  ,]</label>
+                <scroll>true</scroll>
+                <font>font_musicvis_big</font>
+                <textcolor>99cccccc</textcolor>
+                <align>left</align>
+                <scrollspeed>80</scrollspeed>
+            </control>
+            <control type="label">
+                <description>Now Playing</description>
+                <left>0</left>
+                <top>210</top>
+                <right>0</right>
+                <label>$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]$INFO[VideoPlayer.ChannelName,  ,]</label>
+                <scroll>true</scroll>
+                <font>font_musicvis_big</font>
+                <textcolor>99cccccc</textcolor>
+                <align>left</align>
+                <scrollspeed>80</scrollspeed>
+                <visible>!Pvr.IsPlayingRadio</visible>
+            </control>
+			</control>
+		</control>
+		<control type="group">
+			<visible>Player.HasAudio + Skin.HasSetting(show_mini_music_playlist) + !Player.IsInternetStream</visible>
+			<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + !MusicPlayer.Content(livetv)</visible>
+			<top>0</top>
+			<height>662</height>
+			<include>OpenClose_Left</include>
+			<include>Visible_Left</include>
+			<control type="image">
+				<right>0</right>
+				<width>140%</width>
+				<height>100%</height>
+				<texture colordiffuse="80FFFFFF">dialogs/dialog-bg-nobo.png</texture>
+				<colordiffuse>osdpanel</colordiffuse>
+				<visible>!Skin.HasSetting(osd_type)</visible>
+				<visible>!Window.IsVisible(1139)</visible>
+			</control>
+			<control type="image">
+				<right>0</right>
+				<width>140%</width>
+				<height>100%</height>
+				<texture colordiffuse="80FFFFFF">dialogs/dialog-bg-nobo.png</texture>
+				<visible>Skin.HasSetting(osd_type)</visible>
+			</control>
+			
+			<control type="group">
+				<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + ![Window.IsActive(playerprocessinfo) | MusicPlayer.Content(livetv) | Window.IsActive(1139)] + !Player.IsInternetStream</visible>
+				<right>0</right>
+				<top>135</top>
+			
+				<control type="label">
+					<right>30</right>
+					<top>5</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>font45</font>
+					<label>Up Next:</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+					<visible>!String.IsEmpty(MusicPlayer.offset(1).Artist)</visible> 
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>60</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(1).Artist,[COLOR white](1) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(1).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>105</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(2).Artist,[COLOR white](2) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(2).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>150</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(3).Artist,[COLOR white](3) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(3).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>195</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(4).Artist,[COLOR white](4) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(4).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>240</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(5).Artist,[COLOR white](5) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(5).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>285</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(6).Artist,[COLOR white](6) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(6).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>330</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(7).Artist,[COLOR white](7) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(7).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>375</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(8).Artist,[COLOR white](8) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(8).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>420</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(9).Artist,[COLOR white](9) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(9).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+				<control type="label">
+					<right>30</right>
+					<top>465</top>
+					<width>65%</width>
+					<height>50</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>[COLOR button_focus]$INFO[MusicPlayer.offset(10).Artist,[COLOR white](10) [/COLOR]][/COLOR][COLOR white]$INFO[MusicPlayer.offset(10).Title,  •  ][/COLOR]</label>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

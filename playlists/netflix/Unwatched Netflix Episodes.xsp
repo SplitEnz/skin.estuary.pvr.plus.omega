@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="episodes">
+    <name>Unwatched Netflix Episodes</name>
+    <match>all</match>
+    <rule field="dateadded" operator="after">
+        <value>1900-01-01</value>
+    </rule>
+    <rule field="playcount" operator="lessthan">
+        <value>1</value>
+    </rule>
+    <rule field="path" operator="contains">
+        <value>Kodi\userdata\addon_data\plugin.video.netflix\shows\</value>
+    </rule>
+    <order direction="descending">dateadded</order>
+</smartplaylist>

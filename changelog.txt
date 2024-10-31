@@ -1,3 +1,6 @@
+[B]2.0.8[/B]
+• Migration of EstuaryPVR+ (Nexus) skin files added to master branch.
+
 [B]2.0.7[/B]
 • License added and Changelog.txt file created.
 

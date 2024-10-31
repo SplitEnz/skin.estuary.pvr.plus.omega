@@ -1,0 +1,5 @@
+<node order="10" type="folder">
+	<label>20382</label>
+	<icon>DefaultRecentlyAddedMovies.png</icon>
+	<path>videodb://recentlyaddedmovies/</path>
+</node>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colors>
+	<color name="primary_background">FFA22A66</color>
+	<color name="secondary_background">33FFB3D7</color>
+	<color name="dialog_tint">FF251F24</color>
+	<color name="button_focus">FFFF8EC4</color>
+	<color name="epg_button_nofocus">FFA22A66</color>
+	<color name="epg_button_focus">FFFF8EC4</color>
+	<color name="selected">FFFF0261</color>
+	<color name="osdpanel">FFA22A66</color>
+	<color name="0_Genre">FFA22A66</color>
+</colors>

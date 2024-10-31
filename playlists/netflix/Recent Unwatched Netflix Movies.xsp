@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>Recent Unwatched Netflix Movies</name>
+    <match>all</match>
+     <rule field="dateadded" operator="inthelast">
+        <value>30</value>
+    </rule>
+    <rule field="playcount" operator="lessthan">
+        <value>1</value>
+    </rule>
+    <rule field="path" operator="contains">
+        <value>Kodi\userdata\addon_data\plugin.video.netflix\movies\</value>
+    </rule>
+    <order direction="descending">dateadded</order>
+</smartplaylist>

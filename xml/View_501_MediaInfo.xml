@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="View_501_MediaInfo">
+		<control type="group">
+			<include>OpenClose_Left</include>
+			<visible>Control.IsVisible(501)</visible>
+			<include>Visible_Left</include>
+			<include content="New_ListContainer">
+				<param name="left" value="0" />
+				<param name="right" value="960" />
+				<param name="list_id" value="501" />
+				<param name="viewtype_label" value="MediaInfo" />
+			</include>
+			<include content="Separator">
+				<param name="left" value="960" />
+				<param name="visible_vertical" value="true" />
+			</include>
+			<include>New_ListInfoPanel</include> 
+		</control>
+	</include>
+
+</includes>

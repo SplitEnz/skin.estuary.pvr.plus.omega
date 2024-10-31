@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>Netflix Random Movies</name>
+    <match>all</match>
+    <limit>15</limit>
+	<rule field="path" operator="contains">
+        <value>Kodi\userdata\addon_data\plugin.video.netflix\movies\</value>
+    </rule>
+    <order direction="descending">random</order>
+</smartplaylist>

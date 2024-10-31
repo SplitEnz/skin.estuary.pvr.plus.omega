@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colors>
+	<color name="primary_background">FF9f1e1e</color>
+	<color name="secondary_background">338c1b1b</color>
+	<color name="dialog_tint">FF8c1b1b</color>
+	<color name="button_focus">FFFDA700</color>
+	<color name="OSD_button_nofocus">FF9f1e1e</color>
+	<color name="epg_button_nofocus">FF9f1e1e</color>
+	<color name="epg_button_focus">FFFDA700</color>
+	<color name="selected">FFFFF100</color>
+	<color name="osdpanel">FF9f1e1e</color>
+	<color name="0_Genre">FF9f1e1e</color>
+</colors>
