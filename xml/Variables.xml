@@ -1780,6 +1780,12 @@
 	</variable>
 	
 	<variable name="MPAARatingIcons_TVShows_VideoPlayer_Var">
+		<value condition="Skin.HasSetting(Skin_Default_(United_Kingdom)) + String.IsEqual(VideoPlayer.Mpaa,UK:U)">flags/mpaa/rating/1.default/BBFC_U_Certificate_UK.png</value>
+		<value condition="Skin.HasSetting(Skin_Default_(United_Kingdom)) + String.IsEqual(VideoPlayer.Mpaa,UK:PG)">flags/mpaa/rating/1.default/BBFC_PG_Certificate_UK.png</value>
+		<value condition="Skin.HasSetting(Skin_Default_(United_Kingdom)) + String.IsEqual(VideoPlayer.Mpaa,UK:12)">flags/mpaa/rating/1.default/BBFC_12_Certificate_UK.png</value>
+		<value condition="Skin.HasSetting(Skin_Default_(United_Kingdom)) + String.IsEqual(VideoPlayer.Mpaa,UK:12A)">flags/mpaa/rating/1.default/BBFC_12A_Certificate_UK.png</value>
+		<value condition="Skin.HasSetting(Skin_Default_(United_Kingdom)) + String.IsEqual(VideoPlayer.Mpaa,UK:15)">flags/mpaa/rating/1.default/BBFC_15_Certificate_UK.png</value>
+		<value condition="Skin.HasSetting(Skin_Default_(United_Kingdom)) + String.IsEqual(VideoPlayer.Mpaa,UK:18)">flags/mpaa/rating/1.default/BBFC_18_Certificate_UK.png</value>
 		<value condition="Skin.HasSetting(Skin_Default_(United_Kingdom))">$INFO[VideoPlayer.MPAA,flags/mpaa/rating/1.default/,.png]</value>
 		
 		<value condition="Skin.HasSetting(australia) + String.IsEqual(VideoPlayer.Mpaa,australia:ctc)">flags/mpaa/rating/australia/ctc.png</value>
