@@ -85,7 +85,7 @@
 						</include>
 						<include content="WidgetListPosterLarge" condition="Library.HasContent(movies) + !Skin.HasSetting(home_screen_poster_size)">
 							<param name="content_path" value="special://skin/playlists/recent_unwatched_movies.xsp"/>
-							<param name="widget_header" value="$LOCALIZE[31012]"/>
+							<param name="widget_header" value="$LOCALIZE[31512]"/>
 							<param name="widget_header_focus" value="$INFO[Container(5201).ListItem.Label, | ] $INFO[Container(5201).ListItem.Year,(,)]"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="5201"/>

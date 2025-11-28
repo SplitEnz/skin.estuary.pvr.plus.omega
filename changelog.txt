@@ -1,3 +1,6 @@
+[B]2.1.0[/B]
+• Widget label fixed on home screen for recently added movies on large sized posters. 
+
 [B]2.0.9[/B]
 • README.Md file added.
 
