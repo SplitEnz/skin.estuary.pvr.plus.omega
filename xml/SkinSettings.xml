@@ -428,12 +428,26 @@
 					<onclick>Skin.ToggleSetting(Display_Movie_Decades_Widget)</onclick>
 					<selected>!Skin.HasSetting(Display_Movie_Decades_Widget)</selected>
 				</control>
+				<control type="radiobutton" id="911">
+					<label>Display Movie 'Genre' Widget</label>
+					<include>DefaultSettingButton</include>
+					<onclick>Skin.ToggleSetting(Display_Movie_Genre_Widget)</onclick>
+					<selected>!Skin.HasSetting(Display_Movie_Genre_Widget)</selected>
+				</control>
+
 				<control type="radiobutton" id="903">
 					<label>Display 'Continue Watching' TV Episode Widget</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(Display_Continue_Watching_TV_Episode_Widget)</onclick>
 					<selected>!Skin.HasSetting(Display_Continue_Watching_TV_Episode_Widget)</selected>
 				</control>
+				<control type="radiobutton" id="912">
+					<label>Display TV Show 'Genre' Widget</label>
+					<include>DefaultSettingButton</include>
+					<onclick>Skin.ToggleSetting(Display_TvShow_Genre_Widget)</onclick>
+					<selected>!Skin.HasSetting(Display_TvShow_Genre_Widget)</selected>
+				</control>
+
 				<control type="radiobutton" id="904">
 					<label>Display 'Streaming Services' Widget</label>
 					<include>DefaultSettingButton</include>
