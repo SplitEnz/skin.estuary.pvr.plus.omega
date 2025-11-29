@@ -90,7 +90,7 @@
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="5201"/>
 						</include>
-						<include content="WidgetListCategories" condition="Library.HasContent(movies)">
+						<include content="WidgetListCategories" condition="Library.HasContent(movies) + !Skin.HasSetting(Display_Movie_Genre_Widget)">
 							<param name="content_path" value="videodb://movies/genres/"/>
 							<param name="widget_header" value="$LOCALIZE[135]"/>
 							<param name="widget_target" value="videos"/>
@@ -260,7 +260,7 @@
 							<param name="onclick_action" value="$VAR[TVShowOnClickActionVar]"/>
 						</include>
 						
-						<include content="WidgetListCategories" condition="Library.HasContent(tvshows)">
+						<include content="WidgetListCategories" condition="Library.HasContent(tvshows) + !Skin.HasSetting(Display_TvShow_Genre_Widget)">
 							<param name="content_path" value="videodb://tvshows/genres/"/>
 							<param name="widget_header" value="$LOCALIZE[135]"/>
 							<param name="widget_target" value="videos"/>
@@ -284,7 +284,7 @@
 							<param name="list_id" value="6301"/>
 						</include>
 						
-						<include content="WidgetListCategories" condition="Library.HasContent(tvshows)">
+						<include content="WidgetListCategories" condition="Library.HasContent(tvshows) + !Skin.HasSetting(Display_TvShow_Studios_Widget)">
 							<param name="content_path" value="videodb://tvshows/studios/"/>
 							<param name="widget_header" value="$LOCALIZE[20388]"/>
 							<param name="widget_target" value="videos"/>
