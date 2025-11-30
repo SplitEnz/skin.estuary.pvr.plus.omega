@@ -447,7 +447,7 @@
 					<onclick>Skin.ToggleSetting(Display_TvShow_Genre_Widget)</onclick>
 					<selected>!Skin.HasSetting(Display_TvShow_Genre_Widget)</selected>
 				</control>
-				<control type="radiobutton" id="912">
+				<control type="radiobutton" id="913">
 					<label>Display TV Show 'Studios' Widget</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(Display_TvShow_Studios_Widget)</onclick>
